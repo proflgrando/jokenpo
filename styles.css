@@ -61,6 +61,10 @@ left: -25px;
 .result {
     font-size: 40px;
     color: azure
+    font-family: Asap, sans-serif;
+    text-align: center;
+
+
 }
 
 .result > p {

@@ -15,9 +15,9 @@ function getComputerChoice(){
 }
 
 function convertToWord(letter) {
-    if(letter === "r") return "Rock"
-    if(letter === "p") return "Paper"
-    return "Scissor";
+    if (letter === "r") return "Pedra";
+    if (letter === "p") return "Papel";
+    return "Tesoura";
 }
 
 getComputerChoice();
@@ -26,18 +26,28 @@ function win(userChoice, computerChoice){
     userScore++;
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
-    result_div.innerHTML = `${convertToWord(userChoice)} bate ${convertToWord(computerChoice)} voce venceu`; 
+    const smallUserWord = "user".fontsize(5).sub();
+    const IAUserWord = "IA".fontsize(5).sub();
+    result_div.innerHTML = `${convertToWord(userChoice)}${smallUserWord} vence ${convertToWord(computerChoice)}${IAUserWord}`; 
 }
 
-function lose(){
+function lose(userChoice, computerChoice){
     computerScore++;
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
-    result_div.innerHTML = `${convertToWord(userChoice)} bate ${convertToWord(computerChoice)} voce perdeu`;
+    const smallUserWord = "user".fontsize(3).sub();
+    const IAUserWord = "IA".fontsize(3).sub();
+    result_div.innerHTML = `${convertToWord(userChoice)}${smallUserWord} perde para  ${convertToWord(computerChoice)}${IAUserWord}`; 
 }
 
-function draw(){
-    result_div.innerHTML = `${convertToWord(userChoice)} empata com ${convertToWord(computerChoice)}`;
+function draw(userChoice, computerChoice){
+    userScore++;
+    computerScore++;
+    userScore_span.innerHTML = userScore;
+    computerScore_span.innerHTML = computerScore;
+    const smallUserWord = "user".fontsize(3).sub();
+    const IAUserWord = "IA".fontsize(3).sub();
+    result_div.innerHTML = `${convertToWord(userChoice)}${smallUserWord} empata com  ${convertToWord(computerChoice)}${IAUserWord}`; 
 }
 
 function game(userChoice){
@@ -46,19 +56,19 @@ function game(userChoice){
         case "rs": 
         case "pr":
         case "sp":
-            win();
+            win(userChoice, computerChoice);
             break
         
         case "rp": 
         case "sr":
         case "ps":
-            lose();
+            lose(userChoice, computerChoice);
             break
         
         case "rr": 
         case "pp":
         case "ss":
-            draw();
+            draw(userChoice, computerChoice);
             break
     }
 }
